@@ -13,6 +13,8 @@ public class StringHelperTest {
     }
     StringHelper helper = new StringHelper();
 
+    // AACD => CD, ACD => CD, CDEF => CDEF, CDAA => CDAA
+
     @Test
     public void testTruncateAInFirst2Positions_WhenAInFirst2Positions() {
         assertEquals("CD", helper.truncateAInFirst2Positions("AACD"));
@@ -26,6 +28,28 @@ public class StringHelperTest {
     @Test
     public void testTruncateAInFirst2Positions_WhenANotInFirst2Position() {
         assertEquals("CDAA", helper.truncateAInFirst2Positions("CDAA"));
+    }
+
+    // ABCD => false, ABAB => true AB => true, A => false
+
+    @Test
+    public void testAreFirstAndLastTwoCharactersTheSame_BasicNegativeScenario() {
+        assertFalse(helper.areFirstAndLastTwoCharactersTheSame("ABCD"));
+    }
+
+    @Test
+    public void testAreFirstAndLastTwoCharactersTheSame_BasicPositiveScenario() {
+        assertTrue(helper.areFirstAndLastTwoCharactersTheSame("ABAB"));
+    }
+
+    @Test
+    public void testAreFirstAndLastTwoCharactersTheSame_WhenTwoAlphabetWord() {
+        assertTrue(helper.areFirstAndLastTwoCharactersTheSame("AB"));
+    }
+
+    @Test
+    public void testAreFirstAndLastTwoCharactersTheSame_WhenOneAlphabetWord() {
+        assertFalse(helper.areFirstAndLastTwoCharactersTheSame("A"));
     }
 
 
